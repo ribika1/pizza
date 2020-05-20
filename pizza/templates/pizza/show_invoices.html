@@ -1,0 +1,29 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}Invoices{% endblock %}
+
+{% block content %}
+    <form action="{% url 'invoice_details' %}">
+        <h1>Invoices for {{ customer.firstName }} {{ customer.lastName }}</h1>
+        <table class="grid">
+            <tr>
+                <th></th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+            {% for invoice in customer.invoice_set.all %}
+            <tr>
+                <td>
+                    <button value="{{ invoice.invoiceId }}" name="invoice_id">
+                        Details
+                    </button>
+                </td>
+                <td>{{ invoice.date }}</td>
+                <td>{{ invoice.amount | floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+
+{% endblock %}

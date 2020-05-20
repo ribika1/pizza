@@ -1,0 +1,43 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}Price{% endblock %}
+
+{% block content %}
+    <h1>Price of your Pizza</h1>
+    <!--{{crust}}
+    {{sauce}}
+    {{toppings}}-->
+    <table>
+        <tr>
+            <td class="emph">Crust</td>
+            <td>{{crust.name}}</td>
+            <td>{{crust.price | floatformat:2 }}</td>
+        </tr>
+        <tr>
+            <td class="emph">Sauce</td>
+            <td>{{sauce.name}}</td>
+            <td>{{sauce.price | floatformat:2}}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="emph">Toppings</td>
+        </tr>
+        {% for topping in toppings %}
+            <tr>
+                <td></td>
+                <td>{{topping.name}}</td>
+                <td>{{topping.price | floatformat:2}}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="2" class="emph">Total</td>
+                <td class="emph">{{total | floatformat:2}}</td>
+
+        </tr>
+    </table>
+    <form action="{% url 'add_to_tab' %}" method="post">
+        {% csrf_token %}
+        <button>Add to Tab</button>
+    </form>
+
+{% endblock %}

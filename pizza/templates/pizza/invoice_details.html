@@ -1,0 +1,41 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}Invoice Details{% endblock %}
+
+{% block content %}
+    <h1>Details of Invoice dated {{ invoice.date }}</h1>
+    <h2>Customer: {{ invoice.customer.firstName }} {{ invoice.customer.lastName }}</h2>
+    <h2>Invoice total: {{ invoice.amount | floatformat:2 }}</h2>
+        {% for pizza in invoice.pizza_set.all %}
+        <h2>Pizza {{ forloop.counter }}</h2>
+         <table class="box">
+            <tr>
+                <td class="emph">Crust</td>
+                <td>{{pizza.crust.name}}</td>
+                <td>{{pizza.crust.price | floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td class="emph">Sauce</td>
+                <td>{{pizza.sauce.name}}</td>
+                <td>{{pizza.sauce.price | floatformat:2}}</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="emph">Toppings</td>
+            </tr>
+            {% for topping in pizza.toppings.all %}
+                <tr>
+                    <td></td>
+                    <td>{{topping.name}}</td>
+                    <td>{{topping.price | floatformat:2}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" class="emph">Total</td>
+                    <td class="emph">{{total | floatformat:2}}</td>
+
+            </tr>
+        </table>
+
+    {% endfor %}
+{% endblock %}

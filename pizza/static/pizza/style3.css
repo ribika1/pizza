@@ -1,0 +1,110 @@
+/* 
+    Document   : style1
+    Created on : Mar 25, 2012, 11:30:27 PM
+    Updated 5/29/2019
+        Change to SCSS and factor out colors as variables
+    Author     : Ben
+    Description:
+        Provide a standard styling for examples in Internet programming course
+*/
+/* Original color combination * /
+$background_html_color:  #cdba96;  // wheat 3
+$background_body_color: #ffe7ba;  // wheat
+$border_color: #8b7e66;  // wheat 4
+$th_background_color: darken($background_html_color, 30%);
+$th_color: white;
+/**/
+/* ColourLovers http://www.colourlovers.com/palette/3981713/January */
+/**/
+html {
+  background-color: #4768E9;
+  font-family: sans-serif; }
+
+body {
+  background-color: #C2C2C2; }
+
+.main {
+  display: flex; }
+
+.main.wide .content {
+  flex: 1 1 85%; }
+
+.main.wide .left-side {
+  flex: 1 1 15%; }
+
+.content {
+  flex: 1 1 50%;
+  border-style: groove;
+  border-width: 4px;
+  padding: 15px;
+  border-color: #0E0524; }
+
+.left-side {
+  flex: 1 1 25%;
+  padding: 15px; }
+
+.stay-put {
+  overflow-x: hidden;
+  position: fixed;
+  width: 20%; }
+
+.right-side {
+  flex: 1 1 25%;
+  padding: 15px; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #4768E9; }
+
+.main-title {
+  text-align: center;
+  font-size: 4em;
+  font-family: sans-serif; }
+
+th, th.narrow, th.wide {
+  background-color: #102887;
+  color: #EFF6D8;
+  border-color: #0E0524; }
+
+th.narrow {
+  width: 5em; }
+
+th.wide {
+  width: 10em; }
+
+.numeric {
+  text-align: right; }
+
+.center {
+  text-align: center; }
+
+table.box {
+  border-style: groove;
+  border-color: orange; }
+
+table.grid, table.grid th, table.grid td {
+  border-style: solid;
+  border-collapse: collapse;
+  border-width: 3px;
+  border-color: #0E0524;
+  padding: 5px;
+  /*text-align: right;*/ }
+
+table th, table th.narrow, table th.wide, table td {
+  padding: 5px; }
+
+.error {
+  font-size: x-large;
+  color: mediumvioletred; }
+
+.strong {
+  font-size: x-large;
+  font-weight: bold; }
+
+.emph {
+  font-size: large;
+  font-weight: bold; }
+
+.done {
+  font-size: x-small; }
+
+/*# sourceMappingURL=style3.css.map */

@@ -1,0 +1,152 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}
+    Build
+{% endblock %}
+
+{% block content %}
+    <h1>Change Your Pizza</h1>
+
+    {% if messages %}
+    <ul class="error">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="{% url 'show_tab' %}" method="get">
+    {% csrf_token %}
+        <input type="hidden" value="{{ index }}" name="index"?/>
+        <table>
+            <tr>
+            <td>
+
+                <h2>Choose your Crust</h2>
+                <table>
+                    <tr>
+                        <td></td>
+                        <th>Crust</th>
+                        <th>Price</th>
+                    </tr>
+                    {% for crust in crusts %}
+                    <tr>
+                        <td>
+                            {% if crust.crustId == pizza_descriptor.0 %}
+                                <input type="radio" name="crust" id="crust{{forloop.counter}}"
+                                       value="{{crust.crustId}}" checked/>
+                            {% else %}
+                                <input type="radio" name="crust" id="crust{{forloop.counter}}"
+                                        value="{{crust.crustId}}"/>
+                            {% endif %}
+                        </td>
+                        <td><label for="crust{{forloop.counter}}">{{crust.name}}</label></td>
+                        <td>{{crust.price | floatformat:2}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </td>
+            <td style="width: 5em;"></td>
+            <td>
+                <h2>Choose your Sauce</h2>
+                <table>
+                    <tr>
+                        <td></td>
+                        <th>Sauce</th>
+                        <th>Price</th>
+                    </tr>
+                    {% for sauce in sauces %}
+                    <tr>
+                        <td>
+                            {% if sauce.sauceId == pizza_descriptor.1 %}
+                                <input type="radio" name="sauce" id="sauce{{forloop.counter}}"
+                                       value="{{sauce.sauceId}}" checked/>
+                            {% else %}
+                                <input type="radio" name="sauce" id="sauce{{forloop.counter}}"
+                                        value="{{sauce.sauceId}}" />
+                            {% endif %}
+                        </td>
+                        <td><label for="sauce{{forloop.counter}}">{{sauce.name}}</label></td>
+                        <td>{{sauce.price | floatformat:2}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </td>
+            </tr>
+        </table>
+
+
+        <h2>Choose your Topping</h2>
+
+        <table>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <th>Regular</th>
+                            <th></th>
+                        </tr>
+                        {% for topping in t_regular %}
+                        <tr>
+                            <td>
+                                {% if topping.toppingId in pizza_descriptor.2 %}
+                                    <input type="checkbox" name="topping"
+                                       value="{{topping.toppingId}}" checked/>
+                                {% else %}
+                                    <input type="checkbox" name="topping"
+                                       value="{{topping.toppingId}}"
+                                       id="topping{{forloop.counter}}"/>
+                                {% endif %}
+                            </td>
+                            <td><label for="topping{{forloop.counter}}">{{topping.name}}</label></td>
+                            <!--<td>{{topping.price | floatformat:2}}</td>-->
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </td>
+                <td style="width: 3em;"></td>
+                <td style="vertical-align: top;">
+                    <table>
+                        <tr>
+                            <td></td>
+                            <th>Premium</th>
+                            <th></th>
+                        </tr>
+                        {% for topping in t_premium %}
+                        <tr>
+                            <td>
+                                {% if topping.toppingId in pizza_descriptor.2 %}
+                                    <input type="checkbox" name="topping"
+                                       value="{{topping.toppingId}}" checked/>
+                                {% else %}
+                                    <input type="checkbox" name="topping"
+                                       value="{{topping.toppingId}}"
+                                       id="topping{{forloop.counter}}"/>
+                                {% endif %}
+                            </td>
+                            <td><label for="topping{{forloop.counter}}">{{topping.name}}</label></td>
+                            <!--<td>{{topping.price | floatformat:2}}</td>-->
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+        <p>
+         <button formmethod="post" formaction="{% url 'save_edits' %}">
+             Save Changes</button>
+         <button>Cancel</button>
+        </p>
+    </form>
+{% endblock %}

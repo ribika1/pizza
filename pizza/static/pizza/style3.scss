@@ -1,0 +1,165 @@
+/* 
+    Document   : style1
+    Created on : Mar 25, 2012, 11:30:27 PM
+    Updated 5/29/2019
+        Change to SCSS and factor out colors as variables
+    Author     : Ben
+    Description:
+        Provide a standard styling for examples in Internet programming course
+*/
+
+
+/* Original color combination * /
+$background_html_color:  #cdba96;  // wheat 3
+$background_body_color: #ffe7ba;  // wheat
+$border_color: #8b7e66;  // wheat 4
+$th_background_color: darken($background_html_color, 30%);
+$th_color: white;
+/**/
+
+/* ColourLovers http://www.colourlovers.com/palette/3981713/January */
+$background_html_color:  #4768E9;
+$background_body_color: #C2C2C2;
+$border_color: #0E0524;
+$th_background_color: darken($background_html_color, 30%);
+$th_color: #EFF6D8;
+$heading_color: $background_html_color;
+$error_color: mediumvioletred;
+/**/
+
+$background_html_color: white !default;
+$background_body_color: white !default;
+$border_color: black !default;
+$th_background_color: white !default;
+$th_color: black !default;
+$left_side_width: 25% !default;
+$left_side_content_width: 20% !default;
+$heading_color: black !default;
+$error_color: $heading_color !default;
+$garish_color: orange !default;
+
+html {
+    background-color: $background_html_color;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: $background_body_color;
+}
+
+.main {
+    display: flex;
+}
+
+.main.wide .content {
+    flex: 1 1 85%;
+
+}
+
+.main.wide .left-side {
+    flex: 1 1 15%;
+}
+
+.content {
+    flex: 1 1 50%;
+    border-style: groove;
+    border-width: 4px;
+    padding: 15px;
+    border-color: $border_color;
+}
+
+.left-side {
+    flex: 1 1 $left_side_width;
+    padding: 15px;
+    //position: fixed;;
+}
+
+.stay-put {
+    overflow-x: hidden;
+    position: fixed;
+    width: $left_side_content_width;
+}
+
+.right-side {
+    flex: 1 1 25%;
+    padding: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: $heading_color;
+}
+
+.main-title {
+    //border-style: double;
+    //border-width: 8px;
+    //padding: 15px;
+    //border-color: $border_color;
+    text-align: center;
+    font-size: 4em;
+    font-family: sans-serif;
+}
+
+th {
+    background-color: $th_background_color;
+    color: $th_color;
+    border-color: $border_color;
+}
+
+th.narrow {
+    @extend th;
+    width: 5em;
+    //text-align: left;
+}
+
+th.wide {
+    @extend th;
+    width: 10em;
+    //text-align: left;
+}
+   
+
+.numeric {
+    text-align: right;
+}
+            
+.center {
+    text-align: center;
+}
+
+table.box {
+    border-style: groove;
+    border-color: $garish_color;
+}
+
+table.grid, table.grid th, table.grid td {
+    border-style: solid;
+    border-collapse: collapse;
+    border-width: 3px;
+    border-color: $border_color;
+    padding: 5px;
+  /*text-align: right;*/ }
+
+table th, table td {
+    padding: 5px;
+}
+
+.error {
+    font-size: x-large;
+    color: $error_color;
+    //color: vi
+}
+
+.strong {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+
+.emph {
+    font-size: large;
+    font-weight: bold;
+}
+
+.done {
+    font-size: x-small;
+}

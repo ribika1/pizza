@@ -1,0 +1,77 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+    <form method="post" action="{% url 'complete_sale' %}">
+        {% csrf_token %}
+        <h2>Select Your Name</h2>
+        <select size="5" name="customer_id">
+            {% for customer in customers %}
+                <option value="{{ customer.customerId }}">
+                    {{ customer.lastName }}, {{ customer.firstName }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <p>
+            <button class="strong">Complete Sale</button>
+
+            <button class="emph"
+                formaction="{% url 'show_tab' %}"
+                formmethod="get" >
+                Cancel</button>
+        </p>
+    </form>
+
+       <p class="strong">
+        Grand total: {{ grand_total | floatformat:2 }}
+    </p>
+
+    <form>
+    {% csrf_token %}
+    {% for crust, sauce, toppings, total in tab %}
+        <h2>Pizza {{ forloop.counter }}</h2>
+         <table class="box">
+            <tr>
+                <td class="emph">Crust</td>
+                <td>{{crust.name}}</td>
+                <td>{{crust.price | floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td class="emph">Sauce</td>
+                <td>{{sauce.name}}</td>
+                <td>{{sauce.price | floatformat:2}}</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="emph">Toppings</td>
+            </tr>
+            {% for topping in toppings %}
+                <tr>
+                    <td></td>
+                    <td>{{topping.name}}</td>
+                    <td>{{topping.price | floatformat:2}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" class="emph">Total</td>
+                    <td class="emph">{{total | floatformat:2}}</td>
+
+            </tr>
+        </table>
+        {% comment %}
+        <p>
+            <button class="emph" formmethod="post"
+                    formaction="{% url 'remove_from_tab' %}"
+                    name="pizza_index", value="{{ forloop.counter0 }}">
+                Remove Pizza</button>
+            <button class="emph"
+                    formmethod="get"
+                    formaction="{% url 'edit_pizza' %}"
+                    name="pizza_index", value="{{ forloop.counter0 }}">
+                Edit Pizza</button>
+        </p>
+        {% endcomment %}
+    {% endfor %}
+{% endblock %}

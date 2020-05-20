@@ -1,0 +1,21 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}Select User{% endblock %}
+
+{% block content %}
+    <form >
+       <h2>Select Your Name</h2>
+        <select size="5" name="customer_id">
+            {% for customer in customers %}
+                <option value="{{ customer.customerId }}">
+                    {{ customer.lastName }}, {{ customer.firstName }}
+                </option>
+            {% endfor %}
+        </select>
+        <p>
+            <button formaction="{% url 'list_invoices' %}">Display Invoices</button>
+        </p>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,101 @@
+/* 
+    Document   : style2
+    Created on : 8/12/2019
+    Author     : Ben
+    Description:
+        Something with a little more life???
+*/
+/* hot dog stand?  * /
+$hbg: yellow;
+$border: red;
+$bbg: white;
+$color: black;
+$hcolor: $border;
+/**/
+/* greenish * /
+$hbg: rgb(0,32,0);
+$other1: 200;
+$main1: 255;
+$bbg: rgb($other1, $main1, $other1);
+$color: darken($hbg, 20%);
+$border: rgb(128,0,0);
+/* */
+/* bluish */
+/**/
+html {
+  background-color: #004064; }
+
+body {
+  margin-left: 15%;
+  margin-right: 15%;
+  background-color: #97daff;
+  border-style: groove;
+  border-width: 4px;
+  padding: 15px;
+  border-color: maroon;
+  color: #004064; }
+
+h1, h2, h3, h4 {
+  color: #004064; }
+
+th {
+  background-color: #ccc; }
+
+.numeric {
+  text-align: right; }
+
+.center {
+  text-align: center; }
+
+table.grid {
+  border-collapse: collapse;
+  /*text-align: right;*/ }
+
+table.grid th, table.grid td {
+  border-style: solid;
+  border-collapse: collapse;
+  border-width: 3px;
+  padding: 5px;
+  /*text-align: right;*/ }
+
+td.label {
+  font-weight: bold;
+  padding-right: 1em; }
+
+table.grid td.no-grid {
+  border-style: none; }
+
+.error {
+  color: purple;
+  font-size: x-large; }
+
+.main {
+  display: flex; }
+
+.main.wide .content {
+  flex: 1 1 85%; }
+
+.main.wide .left-side {
+  flex: 1 1 15%; }
+
+.content {
+  flex: 1 1 50%;
+  border-style: groove;
+  border-width: 4px;
+  padding: 15px;
+  border-color: maroon; }
+
+.left-side {
+  flex: 1 1 25%;
+  padding: 15px; }
+
+.stay-put {
+  overflow-x: hidden;
+  position: fixed;
+  width: 20%; }
+
+.right-side {
+  flex: 1 1 25%;
+  padding: 15px; }
+
+/*# sourceMappingURL=style2.css.map */

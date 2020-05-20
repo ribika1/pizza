@@ -1,0 +1,71 @@
+
+{% extends "pizza/pizza_base.html" %}
+
+{% block title %}Tab{% endblock %}
+
+{% block right_side %}
+    <div class="stay-put">
+        <form>
+            <button class="strong"
+                formaction="{% url 'checkout' %}">
+                Go to Checkout</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <!--<p>{{ tab }}</p>-->
+
+    <p class="strong">
+        {% if grand_total == 0 %}
+            There is no pizza
+        {% else %}
+            Grand total: {{ grand_total | floatformat:2 }}
+        {% endif %}
+    </p>
+
+    <form>
+    {% csrf_token %}
+    {% for crust, sauce, toppings, total in tab %}
+        <h2>Pizza {{ forloop.counter }}</h2>
+         <table class="box">
+            <tr>
+                <td class="emph">Crust</td>
+                <td>{{crust.name}}</td>
+                <td>{{crust.price | floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td class="emph">Sauce</td>
+                <td>{{sauce.name}}</td>
+                <td>{{sauce.price | floatformat:2}}</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="emph">Toppings</td>
+            </tr>
+            {% for topping in toppings %}
+                <tr>
+                    <td></td>
+                    <td>{{topping.name}}</td>
+                    <td>{{topping.price | floatformat:2}}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="2" class="emph">Total</td>
+                    <td class="emph">{{total | floatformat:2}}</td>
+
+            </tr>
+        </table>
+        <p>
+            <button class="emph" formmethod="post"
+                    formaction="{% url 'remove_from_tab' %}"
+                    name="pizza_index", value="{{ forloop.counter0 }}">
+                Remove Pizza</button>
+            <button class="emph"
+                    formmethod="get"
+                    formaction="{% url 'edit_pizza' %}"
+                    name="pizza_index", value="{{ forloop.counter0 }}">
+                Edit Pizza</button>
+        </p>
+    {% endfor %}
+    </form>
+{% endblock %}

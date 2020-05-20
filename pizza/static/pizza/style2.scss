@@ -1,0 +1,146 @@
+/* 
+    Document   : style2
+    Created on : 8/12/2019
+    Author     : Ben
+    Description:
+        Something with a little more life???
+*/
+
+/* hot dog stand?  * /
+$hbg: yellow;
+$border: red;
+$bbg: white;
+$color: black;
+$hcolor: $border;
+/**/
+
+/* greenish * /
+$hbg: rgb(0,32,0);
+$other1: 200;
+$main1: 255;
+$bbg: rgb($other1, $main1, $other1);
+$color: darken($hbg, 20%);
+$border: rgb(128,0,0);
+/* */
+
+/* bluish */
+$other1: 200;
+$main1: 255;
+$hbg: rgb(0, 64,100);
+$bbg: lighten($hbg, 60%);
+$color: darken($hbg, 0%);
+$hcolor: $color;
+$error_color: purple;
+
+/**/
+
+
+$hbg: white !default;
+$border: black !default;
+$bbg: $hbg !default;
+$color: black !default;
+$hcolor: $border !default;
+$border: maroon;
+$error_color: orange !default;
+$left_side_width: 25% !default;
+$left_side_content_width: 20% !default;
+
+html {
+    background-color: $hbg;
+}
+
+body {
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: $bbg;
+    border-style: groove;
+    border-width: 4px;
+    padding: 15px;
+    border-color: $border;
+    color: $color;
+}
+
+
+h1, h2, h3, h4 {
+    color: $hcolor;
+}
+
+th {
+    background-color: #ccc;    
+}
+
+
+.numeric {
+    text-align: right;
+}
+            
+.center {
+    text-align: center;
+}
+
+
+table.grid {
+  border-collapse: collapse;
+  //border-width: 3px;
+  //padding: 5px;
+  /*text-align: right;*/ }
+
+table.grid th, table.grid td {
+  border-style: solid;
+  border-collapse: collapse;
+  border-width: 3px;
+  padding: 5px;
+  /*text-align: right;*/ }
+
+td.label {
+  font-weight: bold;
+  padding-right: 1em;
+}
+
+table.grid td.no-grid {
+  border-style: none;
+}
+
+.error {
+  color: $error_color;
+  font-size: x-large;
+}
+
+
+.main {
+    display: flex;
+}
+
+.main.wide .content {
+    flex: 1 1 85%;
+
+}
+
+.main.wide .left-side {
+    flex: 1 1 15%;
+}
+
+.content {
+    flex: 1 1 50%;
+    border-style: groove;
+    border-width: 4px;
+    padding: 15px;
+    border-color: $border;
+}
+
+.left-side {
+    flex: 1 1 $left_side_width;
+    padding: 15px;
+    //position: fixed;;
+}
+
+.stay-put {
+    overflow-x: hidden;
+    position: fixed;
+    width: $left_side_content_width;
+}
+
+.right-side {
+    flex: 1 1 25%;
+    padding: 15px;
+}
